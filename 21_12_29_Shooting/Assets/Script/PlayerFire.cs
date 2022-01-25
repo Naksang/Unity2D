@@ -7,9 +7,10 @@ public class PlayerFire : MonoBehaviour
     public GameObject _fireSource;
 
     public Transform _firePos;
-
+    
+    [SerializeField]
+    float _createTime = 0.1f;
     float _initTime;
-    float _createTime = 0.2f;
 
     void Start()
     {

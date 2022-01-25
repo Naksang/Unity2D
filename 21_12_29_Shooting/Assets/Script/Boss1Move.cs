@@ -40,12 +40,9 @@ public class Boss1Move : MonoBehaviour
             GameObject cz = GameObject.Find("CreateZone");
             cz.GetComponent<Enemy1Create>().enabled = true;
             cz.GetComponent<Enemy2Create>().enabled = true;
-            //cz.GetComponent<MeteorCreate>().enabled = true;
             cz.GetComponent<Boss1Create>().enabled = false;
 
             Destroy(this.gameObject);
-
-
         }
         else if (_hp > 0)
         {

@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class FireMove : MonoBehaviour
 {
-    float _speed = 5.0f;
+    [SerializeField]
+    float _speed = 10.0f;
 
     Vector3 dir;
 
