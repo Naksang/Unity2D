@@ -5,9 +5,11 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    public Text _meterText;
+    float _meter = 0;
+
     public Text _scoreText;
     float _score = 0;
-
     public float Score
     {
         get
@@ -17,7 +19,7 @@ public class GameManager : MonoBehaviour
         set
         {
             _score = value;
-            _scoreText.text = "Score : " + _score;
+            _scoreText.text = "" + _score;
         }
     }
 
@@ -28,6 +30,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        
+        _meter += Time.deltaTime;
+        _meterText.text = (int)_meter + "m";
     }
 }

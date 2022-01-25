@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class Boss1Move : MonoBehaviour
 {
-    public Animator _animater;
     public float _maxHp;
     public float _hp;
     bool _die = false;
@@ -33,9 +32,6 @@ public class Boss1Move : MonoBehaviour
         if (_die) return;
         if (_hp <= 0)
         {
-            _animater.SetBool("expl", true);
-            _animater = null;
-
             this.GetComponent<Enemy1Fire>().enabled = false;
             this.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
 
@@ -75,32 +71,6 @@ public class Boss1Move : MonoBehaviour
                 else
                     this.transform.position = Vector3.MoveTowards(transform.position, _patrolPos[1], _speed * Time.deltaTime);
             }
-
-            //switch(_nowpos)
-            //{
-            //    case 0:
-            //        {
-            //            if (Vector2.Distance(this.transform.position, _patrolPos[0]) < 0.01f)
-            //            {
-            //                StartCoroutine(StopDeley());
-            //                _nowpos = 1;
-            //            }
-            //            else
-            //                this.transform.position = Vector3.MoveTowards(transform.position, _patrolPos[0], _speed * Time.deltaTime);
-            //        }
-            //        break;
-            //    case 1:
-            //        {
-            //            if (Vector2.Distance(this.transform.position, _patrolPos[1]) < 0.01f)
-            //            {
-            //                StartCoroutine(StopDeley());
-            //                _nowpos = 0;
-            //            }
-            //            else
-            //                this.transform.position = Vector3.MoveTowards(transform.position, _patrolPos[1], _speed * Time.deltaTime);
-            //        }
-            //        break;
-            //}
         }
     /*
         MoveTowards

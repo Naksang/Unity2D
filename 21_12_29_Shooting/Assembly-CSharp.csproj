@@ -63,10 +63,8 @@
     <Compile Include="Assets\Script\Boss1Create.cs" />
     <Compile Include="Assets\Script\Boss1Move.cs" />
     <Compile Include="Assets\Script\CoinMove.cs" />
-    <Compile Include="Assets\Script\DestroyGameObj.cs" />
     <Compile Include="Assets\Script\DestroyZone.cs" />
     <Compile Include="Assets\Script\Enemy1Create.cs" />
-    <Compile Include="Assets\Script\Enemy1Explosion.cs" />
     <Compile Include="Assets\Script\Enemy1Fire.cs" />
     <Compile Include="Assets\Script\Enemy1FireMove.cs" />
     <Compile Include="Assets\Script\Enemy1Move.cs" />

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Enemy1Create : MonoBehaviour
 {
+    [SerializeField]
     float _createTime = 0.5f;
     float _initTime;
 

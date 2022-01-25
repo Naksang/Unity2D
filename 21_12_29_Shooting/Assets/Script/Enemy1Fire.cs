@@ -6,36 +6,27 @@ public class Enemy1Fire : MonoBehaviour
 {
     public GameObject _enemyfire;
     public Transform _firepos;
-    bool _startfire = false;
 
-    float _initTime;
+    [SerializeField]
     float _createTime = 1.5f;
+    float _initTime;
 
     void Start()
     {
-        StartCoroutine(EnemyFire());
-    }
 
-    IEnumerator EnemyFire()
-    {
-        yield return new WaitForSeconds(0.5f);
-        _startfire = true;
     }
 
     void Update()
     {
         _initTime += Time.deltaTime;
 
-        if (_startfire)
+        if (_initTime > _createTime)
         {
-            if (_initTime > _createTime)
-            {
-                GameObject fire = Instantiate(_enemyfire);
-                Destroy(fire, 5.0f);
-                fire.transform.position = _firepos.position;
+            GameObject fire = Instantiate(_enemyfire);
+            Destroy(fire, 5.0f);
+            fire.transform.position = _firepos.position;
 
-                _initTime = 0;
-            }
+            _initTime = 0;
         }
     }
 }

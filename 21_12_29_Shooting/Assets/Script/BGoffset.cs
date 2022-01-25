@@ -7,7 +7,7 @@ public class BGoffset : MonoBehaviour
     public GameObject _star0;
     public GameObject _star1;
 
-    float _speed = 3.0f;
+    float _speed = 2.0f;
 
     Vector3 dir;
 

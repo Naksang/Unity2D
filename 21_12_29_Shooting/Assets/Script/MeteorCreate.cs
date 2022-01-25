@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MeteorCreate : MonoBehaviour
 {
+    [SerializeField]
     float _createTime = 5.0f;
     float _initTime;
 

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Enemy1FireMove : MonoBehaviour
 {
+    [SerializeField]
     float _speed = 5.0f;
 
     Vector3 dir;

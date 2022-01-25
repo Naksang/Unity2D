@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Enemy1Move : MonoBehaviour
 {
-    public Animator _animater;
     SpriteRenderer _rend;
 
     float _speed = 2.0f;
@@ -15,7 +14,6 @@ public class Enemy1Move : MonoBehaviour
 
     void Start()
     {
-        _animater = GetComponentInChildren<Animator>();
         _rend = this.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>();
         dir = Vector3.down;
         _hp = 15;
@@ -27,15 +25,7 @@ public class Enemy1Move : MonoBehaviour
         if (_die) return;
         if(_hp <= 0)
         {
-            _animater.SetBool("expl", true);
-            _animater = null;
-
-            this.GetComponent<Enemy1Fire>().enabled = false;
-            this.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
-
-            Transform fire = this.transform.GetChild(0).transform.GetChild(0);
-
-            fire.gameObject.SetActive(false);
+            Destroy(this.gameObject);
 
             GameObject.Find("GameManager").GetComponent<GameManager>().Score += 100;
             _die = true;
