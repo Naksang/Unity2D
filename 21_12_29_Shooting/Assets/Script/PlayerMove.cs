@@ -5,16 +5,15 @@ using UnityEngine;
 public class PlayerMove : MonoBehaviour
 {
     GameObject _fly_right;
-    public GameObject _fly_left;
+    GameObject _fly_left;
     bool fold = false;
+
+    float createTiem = 0.02f;
+    float initTime;
 
     Transform _playertrans;
     float _speed = 10.0f;
     bool _blink = false;
-
-    //[SerializeField]
-    float createTiem = 0.02f;
-    float initTime;
 
     private void Start()
     {

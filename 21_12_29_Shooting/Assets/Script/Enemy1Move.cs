@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class Enemy1Move : MonoBehaviour
 {
+    public GameObject _fly_right;
+    public GameObject _fly_left;
+    bool fold_r = false;
+    bool fold_l = false;
+
     SpriteRenderer _rend;
 
-    float _speed = 2.0f;
+    float _speed = 5.0f;
     float _hp;
     bool _die;
 
@@ -14,6 +19,9 @@ public class Enemy1Move : MonoBehaviour
 
     void Start()
     {
+        _fly_right = this.transform.GetChild(1).transform.GetChild(0).gameObject;
+        _fly_left = this.transform.GetChild(1).transform.GetChild(1).gameObject;
+
         _rend = this.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>();
         dir = Vector3.down;
         _hp = 15;
@@ -23,7 +31,8 @@ public class Enemy1Move : MonoBehaviour
     void Update()
     {
         if (_die) return;
-        if(_hp <= 0)
+
+        if (_hp <= 0)
         {
             Destroy(this.gameObject);
 
@@ -33,6 +42,7 @@ public class Enemy1Move : MonoBehaviour
         else if ( _hp > 0)
         {
             this.transform.Translate(dir * _speed * Time.deltaTime);
+            FlyAnimation();
         }
     }
 
@@ -43,6 +53,36 @@ public class Enemy1Move : MonoBehaviour
             _hp -= collision.gameObject.GetComponent<FireMove>().Damege;
             Destroy(collision.gameObject);
             StartCoroutine(ChangeColor());
+        }
+    }
+
+    void FlyAnimation()
+    {
+        if (!fold_l || !fold_r)
+        {
+            if (_fly_left.transform.rotation.z > 50) fold_l = true;
+            else
+            {
+                _fly_left.transform.Rotate(new Vector3(0, 0, 100 * Time.deltaTime));
+            }
+            if (_fly_right.transform.localScale.z < -50) fold_r = true;
+            else
+            {
+                _fly_right.transform.Rotate(new Vector3(0, 0, -100 * Time.deltaTime));
+            }
+        }
+        else
+        {
+            if (_fly_left.transform.localScale.z <= 0) fold_l = false;
+            else
+            {
+                _fly_left.transform.Rotate(new Vector3(0, 0, -100 * Time.deltaTime));
+            }
+            if (_fly_right.transform.localScale.z >= 0) fold_r = false;
+            else
+            {
+                _fly_right.transform.Rotate(new Vector3(0, 0, 100 * Time.deltaTime));
+            }
         }
     }
 
