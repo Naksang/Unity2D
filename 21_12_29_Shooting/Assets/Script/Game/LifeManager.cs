@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LifeManager : MonoBehaviour
 {
@@ -22,7 +23,10 @@ public class LifeManager : MonoBehaviour
 
     public void Damaged()
     {
-        if (_initLife < 0) return;
+        if (_initLife <= 0)
+        {
+            SceneManager.LoadScene("GameOverScene");
+        }
 
         if (_blink == false)
         {

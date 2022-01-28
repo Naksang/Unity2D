@@ -19,7 +19,7 @@ public class PlayerMove : MonoBehaviour
     {
         _fly_right = this.transform.GetChild(1).transform.GetChild(0).gameObject;
         _fly_left = this.transform.GetChild(1).transform.GetChild(1).gameObject;
-        _playertrans = this.transform.GetChild(0);
+        _playertrans = this.transform.GetChild(1);
     }
 
     void Update()
@@ -29,6 +29,8 @@ public class PlayerMove : MonoBehaviour
             FlyAnimation();
             initTime = 0;
         }
+
+        if (_blink) return;
 
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
@@ -49,14 +51,15 @@ public class PlayerMove : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("EnemyFire"))
         {
-            LifeManager lm = GameObject.Find("LifeZone").GetComponent<LifeManager>();
-            lm.Damaged();
-
+            Destroy(collision.gameObject);
             if (_blink == false)
             {
-                _blink = true; 
+                _blink = true;
                 StartCoroutine(PlayerBlink());
             }
+
+            LifeManager lm = GameObject.Find("LifeZone").GetComponent<LifeManager>();
+            lm.Damaged();
         }    
     }
 

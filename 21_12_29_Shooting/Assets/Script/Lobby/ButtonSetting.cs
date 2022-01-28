@@ -10,6 +10,9 @@ public class ButtonSetting : MonoBehaviour
 
     public void OnClick_GameStart()
     {
+        if (GameObject.Find("ItemManager").GetComponent<WingManager>().Wing <= 0) return;
+
+        GameObject.Find("ItemManager").GetComponent<WingManager>().Wing -= 1;
         SceneManager.LoadScene("GameScene");
     }
 
