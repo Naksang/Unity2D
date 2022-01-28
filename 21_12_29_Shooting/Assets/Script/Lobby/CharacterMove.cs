@@ -10,12 +10,16 @@ public class CharacterMove : MonoBehaviour
     float _upPos;
     float _downPos;
 
-    void Start()
+    private void Awake()
     {
         _charaRect = this.GetComponent<RectTransform>();
+
         _upPos = _charaRect.position.y;
         _downPos = _upPos - 30.0f;
+    }
 
+    private void OnEnable()
+    {
         StartCoroutine(MoveDown());
     }
 
