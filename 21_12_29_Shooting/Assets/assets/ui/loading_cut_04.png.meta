@@ -1,7 +1,25 @@
 fileFormatVersion: 2
 guid: d41a3732806b77e4cb91bb81a9a97bf7
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 300661820727474364
+    second: loading_cut_04_0
+  - first:
+      213: 7843258786893791308
+    second: loading_cut_04_1
+  - first:
+      213: 9005356678874134105
+    second: loading_cut_04_2
+  - first:
+      213: 4407903721421005743
+    second: loading_cut_04_3
+  - first:
+      213: -6153274524892048237
+    second: loading_cut_04_4
+  - first:
+      213: -482507885121243098
+    second: loading_cut_04_5
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -71,9 +89,159 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: loading_cut_04_0
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 174
+        width: 76
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb8bbfd355a2c2400800000000000000
+      internalID: 300661820727474364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loading_cut_04_1
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 211
+        width: 11
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c400442bf4ad8dc60800000000000000
+      internalID: 7843258786893791308
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loading_cut_04_2
+      rect:
+        serializedVersion: 2
+        x: 118
+        y: 211
+        width: 11
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 956fbffdf2479fc70800000000000000
+      internalID: 9005356678874134105
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loading_cut_04_3
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 194
+        width: 74
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa3eb6f94150c2d30800000000000000
+      internalID: 4407903721421005743
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loading_cut_04_4
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 206
+        width: 22
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 394595acb6d2b9aa0800000000000000
+      internalID: -6153274524892048237
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loading_cut_04_5
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 9
+        width: 236
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 628f50a82a9cd49f0800000000000000
+      internalID: -482507885121243098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
