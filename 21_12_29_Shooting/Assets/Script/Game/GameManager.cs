@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    public GameObject _player;
+
     //시간이 갈수록 증가
     public Text _meterText;
     float _meter = 0;
@@ -48,9 +50,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void Start()
+    private void Awake()
     {
-        
+        GameObject Character = Instantiate(Resources.Load<GameObject>("Prefab/Character_" + SingletonManager.instance.CharacterNumber));
+        Character.transform.parent = _player.transform;
+        Character.transform.position = _player.transform.position;
     }
 
     void Update()
