@@ -20,16 +20,4 @@ public class MeteorMove : MonoBehaviour
         this.transform.position += dir * _speed * Time.deltaTime;
         this.transform.Rotate(new Vector3(0, 0, 100 * Time.deltaTime));
     }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("PlayerFire"))
-        {
-            GameManager gm = GameObject.Find("GameManager").GetComponent<GameManager>();
-            gm.Score += 100;
-
-            Destroy(collision.gameObject);
-            Destroy(this.gameObject);
-        }
-    }
 }

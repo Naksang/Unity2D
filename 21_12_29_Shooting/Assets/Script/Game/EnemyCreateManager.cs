@@ -21,7 +21,7 @@ public class EnemyCreateManager : MonoBehaviour
 
     void Update()
     {
-        if(_gm.Score != 0 && _gm.Score % 500 == 0)
+        if((int)_gm.Meter != 0 && (int)_gm.Meter % 1000 == 0)
         {
             _enemy1.enabled = false;
             _enemy2.enabled = false;

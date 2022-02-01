@@ -49,7 +49,7 @@ public class PlayerMove : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("EnemyFire"))
+        if (collision.gameObject.CompareTag("Enemy"))
         {
             Destroy(collision.gameObject);
             if (_blink == false)

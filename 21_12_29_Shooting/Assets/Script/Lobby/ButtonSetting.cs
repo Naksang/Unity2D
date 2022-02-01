@@ -7,6 +7,7 @@ public class ButtonSetting : MonoBehaviour
 {
     public Canvas _baseCanvas;
     public Canvas _characterCanvas;
+    public Canvas _OptionCanvas;
 
     public GameObject[] _characterPanel;
     int _panelNumber;
@@ -45,11 +46,11 @@ public class ButtonSetting : MonoBehaviour
 
     public void OnClick_Option()
     {
-        
+        _OptionCanvas.gameObject.SetActive(true);
     }
 
     //캐릭터 캔버스 작동
-    public void OnClick_C_BackBaseCanvas()
+    public void OnClick_C_CloseCharacter()
     {
         _characterCanvas.gameObject.SetActive(false);
         _baseCanvas.gameObject.SetActive(true);
@@ -74,6 +75,45 @@ public class ButtonSetting : MonoBehaviour
 
     public void OnClick_C_Selectharacter()
     {
-        SingletonManager.instance.CharacterNumber = PlayerPrefs.GetInt("CharacterNum", _panelNumber);
+        SingletonManager.instance.CharacterNumber = _panelNumber;
     }
+
+    //옵션 캔버스 작동
+    public void OnClick_O_BackTitle()
+    {
+        _OptionCanvas.gameObject.SetActive(false);
+        SceneManager.LoadScene("StartScene");
+    }
+
+    public void OnClick_O_CloseOption()
+    {
+        _OptionCanvas.gameObject.SetActive(false);
+    }
+
+    //상단바
+    public void OnClick_U_BuyCoin()
+    {
+        GameObject.Find("StoreCanvas").transform.Find("CoinStore").gameObject.SetActive(true);
+    }
+
+    public void OnClick_U_CloseCoin()
+    {
+        GameObject.Find("StoreCanvas").transform.Find("CoinStore").gameObject.SetActive(false);
+    }
+
+    public void OnClick_U_BuyGem()
+    {
+        GameObject.Find("StoreCanvas").transform.Find("GemStore").gameObject.SetActive(true);
+    }
+
+    public void OnClick_U_CloseGem()
+    {
+        GameObject.Find("StoreCanvas").transform.Find("GemStore").gameObject.SetActive(false);
+    }
+
+    public void OnClick_U_BuyWing()
+    {
+
+    }
+
 }

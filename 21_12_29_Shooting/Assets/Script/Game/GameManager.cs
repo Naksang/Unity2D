@@ -10,6 +10,14 @@ public class GameManager : MonoBehaviour
     //시간이 갈수록 증가
     public Text _meterText;
     float _meter = 0;
+    public float Meter
+    {
+        get { return _meter; }
+        set 
+        {
+            _meter = value;
+        }
+    }
 
     //몬스터 제거 시 증가
     public Text _scoreText;
@@ -59,7 +67,12 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        _meter += Time.deltaTime;
-        _meterText.text = _meter + "m";
+        _meter += Time.deltaTime * 100;
+        //_meter += float.Parse(Time.deltaTime.ToString("N2"));
+        _meterText.text = _meter.ToString("F0") + "m";
+
+        SingletonManager.instance.CurrMeter = _meter;
+        SingletonManager.instance.CurrScore = _score;
+        SingletonManager.instance.CurrCoin = _coin;
     }
 }

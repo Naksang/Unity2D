@@ -1,48 +1,61 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Enemy1Move : MonoBehaviour
 {
+    public GameObject _coinSource;
+
     public GameObject _fly_right;
     public GameObject _fly_left;
     bool fold_r = false;
     bool fold_l = false;
     float _rightRot;
     float _leftRot;
+    float _flySpeed;
 
     SpriteRenderer _rend;
 
-    float _speed = 5.0f;
+    Slider _hpBar;
+    float _maxHp;
     float _hp;
-    bool _die;
+    public float HP
+    {
+        get { return _hp; }
+        set { _hp = value; }
+    }
+
+    float _speed = 5.0f;
 
     Vector3 dir;
 
     void Start()
     {
-        _fly_right = this.transform.GetChild(1).transform.GetChild(0).gameObject;
-        _fly_left = this.transform.GetChild(1).transform.GetChild(1).gameObject;
+        _fly_right = this.transform.GetChild(0).transform.GetChild(0).gameObject;
+        _fly_left = this.transform.GetChild(0).transform.GetChild(1).gameObject;
 
         _leftRot = _fly_left.transform.rotation.eulerAngles.z;
         _rightRot = _fly_right.transform.rotation.eulerAngles.z;
 
         _rend = this.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>();
+        _hpBar = this.transform.GetChild(1).transform.GetChild(0).GetComponent<Slider>();
+
         dir = Vector3.down;
-        _hp = 15;
-        _die = false;
+        _maxHp = 3;
+        _hp = _maxHp;
     }
 
     void Update()
     {
-        if (_die) return;
-
         if (_hp <= 0)
         {
+            GameObject Coin = Instantiate(_coinSource);
+            Coin.transform.position = this.transform.position;
+
             Destroy(this.gameObject);
 
             GameObject.Find("GameManager").GetComponent<GameManager>().Score += 100;
-            _die = true;
         }
         else if ( _hp > 0)
         {
@@ -55,7 +68,9 @@ public class Enemy1Move : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("PlayerFire"))
         {
+            _hpBar.gameObject.SetActive(true);
             _hp -= collision.gameObject.GetComponent<FireMove>().Damege;
+            _hpBar.value = _hp / _maxHp;
             Destroy(collision.gameObject);
             StartCoroutine(ChangeColor());
         }
@@ -68,38 +83,42 @@ public class Enemy1Move : MonoBehaviour
             if (_fly_left.transform.rotation.eulerAngles.z > 50.0f) fold_l = true;
             else
             {
-                Mathf.Abs(_leftRot += 50 * Time.deltaTime);
-                _fly_left.transform.rotation = Quaternion.Euler(0, 0, _leftRot);
+                Mathf.Abs(_leftRot += 5 * Time.deltaTime);
+                //_fly_right.transform.Rotate(0, 0, _leftRot);
+                _fly_right.transform.eulerAngles += new Vector3(0, 0, _leftRot);
             }
         }
         else
         {
-            if (_fly_left.transform.rotation.eulerAngles.z < 0) fold_l = false;
+            if (_fly_left.transform.rotation.eulerAngles.z <= 0) fold_l = false;
             else
             {
-                _leftRot -= 50 * Time.deltaTime;
-                _fly_left.transform.rotation = Quaternion.Euler(0, 0, _leftRot);
+                _leftRot -= 5 * Time.deltaTime;
+                //_fly_right.transform.Rotate(0, 0, -_leftRot);
+                _fly_right.transform.eulerAngles -= new Vector3(0, 0, _leftRot);
             }
+            
         }
-
        
         if(!fold_r)
         {
             if (_fly_right.transform.rotation.eulerAngles.z < -50.0f) fold_r = true;
             else
             {
-                _rightRot -= 50 * Time.deltaTime;
-                _fly_right.transform.rotation = Quaternion.Euler(0, 0, _rightRot);
+                _rightRot -= 5 * Time.deltaTime;
+                //_fly_right.transform.Rotate(0, 0, -_rightRot);
+                _fly_right.transform.eulerAngles -= new Vector3(0, 0, _rightRot);
             }
 
         }
         else
         {
-            if (_fly_right.transform.rotation.eulerAngles.z > 0) fold_r = false;
+            if (_fly_right.transform.rotation.eulerAngles.z >= 0) fold_r = false;
             else
             {
-                Mathf.Abs(_rightRot += 50 * Time.deltaTime);
-                _fly_right.transform.rotation = Quaternion.Euler(0, 0, _rightRot);
+                Mathf.Abs(_rightRot += 5 * Time.deltaTime);
+                //_fly_right.transform.Rotate(0, 0, _rightRot);
+                _fly_right.transform.eulerAngles += new Vector3(0, 0, _rightRot);
             }
         }
     }

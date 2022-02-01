@@ -33,7 +33,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -164,7 +164,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4117746426156002265
 RectTransform:
   m_ObjectHideFlags: 0
@@ -517,7 +517,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4717af6392a85a9409954dc7ba59f9bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bullet: {fileID: 7615978469429237592, guid: 20a8bb357c29b934988d4bb204678845, type: 3}
+  _bullet: {fileID: 4931661697194994325, guid: dd7c95d4d26d63446a32472875f97594, type: 3}
 --- !u!114 &435279078437325192
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -530,7 +530,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0cb13b197f8d4943ac20b597e7deded, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bullet: {fileID: 7615978469429237592, guid: 20a8bb357c29b934988d4bb204678845, type: 3}
+  _bullet: {fileID: 4931661697194994325, guid: dd7c95d4d26d63446a32472875f97594, type: 3}
 --- !u!114 &5833678035918985280
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -543,7 +543,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 209ef2db920184244894d87e52c01c66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bullet: {fileID: 0}
+  _bullet: {fileID: 4931661697194994325, guid: dd7c95d4d26d63446a32472875f97594, type: 3}
 --- !u!114 &2191623671131856248
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -557,8 +557,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 0
-  _enemy: {fileID: 0}
-  _bullet: {fileID: 7615978469429237592, guid: 20a8bb357c29b934988d4bb204678845, type: 3}
+  _bullet: {fileID: 4931661697194994325, guid: dd7c95d4d26d63446a32472875f97594, type: 3}
 --- !u!114 &3968869395295070716
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -571,7 +570,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea0d25916e6979e43ba03b104c153cb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bullet: {fileID: 7615978469429237592, guid: 20a8bb357c29b934988d4bb204678845, type: 3}
+  _bullet: {fileID: 4931661697194994325, guid: dd7c95d4d26d63446a32472875f97594, type: 3}
 --- !u!114 &8776754585777496682
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -588,8 +587,9 @@ MonoBehaviour:
   _hp: 0
   _hpBar: {fileID: 6811419279750842274}
   _patrolPos:
-  - {x: 3, y: 0, z: 0}
-  - {x: -2, y: 1, z: 0}
+  - {x: 0, y: 3.5, z: 0}
+  - {x: -1.5, y: 0, z: 0}
+  - {x: 1.5, y: 2, z: 0}
   _nowpos: 1
 --- !u!61 &9152272207149241298
 BoxCollider2D:

@@ -29,7 +29,7 @@ public class CoinMove : MonoBehaviour
 
     IEnumerator DelayTime()
     {
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(0.2f);
 
         _startmove = true;
     }

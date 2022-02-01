@@ -26,6 +26,8 @@ public class StartManager : MonoBehaviour
 
     private void Start()
     {
+        GameObject.Find("Canvas").transform.Find("Character").GetChild(SingletonManager.instance.CharacterNumber).gameObject.SetActive(true);
+
         StartCoroutine(KaKaoGame());
     }
 
@@ -112,9 +114,6 @@ public class StartManager : MonoBehaviour
     {
         _touchPls.gameObject.SetActive(false);
         _loding.gameObject.SetActive(true);
-
-        
-           
 
         yield return new WaitForSeconds(_deleyTime);
         _lodingRot = false;

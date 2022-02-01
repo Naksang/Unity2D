@@ -4,12 +4,10 @@ using UnityEngine;
 
 public class Enemy1Create : MonoBehaviour
 {
-    //[SerializeField]
     float _createTime = 1.5f;
     float _initTime;
 
     public Transform[] _createPos;
-
     public GameObject _enemySource;
 
     void Update()
@@ -17,25 +15,17 @@ public class Enemy1Create : MonoBehaviour
         _initTime += Time.deltaTime;
         if(_initTime > _createTime)
         {
-            int rand = Random.Range(0, 4);
+            int rand = Random.Range(0, 7);
 
-            if(rand == 3)
+            for(int i = 0; i < 7; i++)
             {
-                GameObject enemy = Instantiate(_enemySource);
-                Destroy(enemy, 10.0f);
-                enemy.transform.position = _createPos[rand].position;
-            }
-            else
-            {
-                int rand2 = 6 - rand;
-                GameObject enemy0 = Instantiate(_enemySource);
-                Destroy(enemy0, 10.0f);
-                enemy0.transform.position = _createPos[rand].position;
+                if (i == rand) continue;
 
-                GameObject enemy1 = Instantiate(_enemySource);
-                Destroy(enemy1, 10.0f);
-                enemy1.transform.position = _createPos[rand2].position;
+                GameObject Enemy = Instantiate(_enemySource);
+                Destroy(Enemy, 10.0f);
+                Enemy.transform.position = _createPos[i].position;
             }
+
             _initTime = 0;
         }
     }

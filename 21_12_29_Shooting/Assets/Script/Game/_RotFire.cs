@@ -6,8 +6,6 @@ public class _RotFire : MonoBehaviour
 {
     public float _speed;
 
-    public Transform _enemy;
-
     public GameObject _bullet;
 
     void Update()

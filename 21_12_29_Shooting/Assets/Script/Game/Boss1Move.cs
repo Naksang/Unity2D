@@ -13,18 +13,19 @@ public class Boss1Move : MonoBehaviour
     SpriteRenderer _rend;
 
     public Vector3[] _patrolPos;
-    float _speed = 2.0f;
+    float _speed = 3.0f;
     public int _nowpos = 1;
 
 
     void Start()
     {
-        _maxHp = 100;
+        _maxHp = 20;
         _hp = _maxHp;
         _rend = this.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>();
 
-        _patrolPos[0] = this.transform.position;
-        _patrolPos[1] = new Vector3(-2, 1, 0);
+        _patrolPos[0] = new Vector3(0, 3.5f, 0);
+        _patrolPos[1] = new Vector3(-1.5f, 0, 0);
+        _patrolPos[2] = new Vector3(1.5f, 2, 0);
     }
 
     void Update()
@@ -32,7 +33,6 @@ public class Boss1Move : MonoBehaviour
         if (_die) return;
         if (_hp <= 0)
         {
-            this.GetComponent<Enemy1Fire>().enabled = false;
             this.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
 
             GameObject.Find("GameManager").GetComponent<GameManager>().Score += 600;
@@ -46,8 +46,6 @@ public class Boss1Move : MonoBehaviour
         }
         else if (_hp > 0)
         {
-            _hpBar.value = _hp / _maxHp;
-
             if(_nowpos == 0)
             {
                 if (Vector2.Distance(this.transform.position, _patrolPos[0]) < 0.01f)
@@ -63,10 +61,20 @@ public class Boss1Move : MonoBehaviour
                 if (Vector2.Distance(this.transform.position, _patrolPos[1]) < 0.01f)
                 {
                     StartCoroutine(StopDeley());
-                    _nowpos = 0;
+                    _nowpos = 2;
                 }
                 else
                     this.transform.position = Vector3.MoveTowards(transform.position, _patrolPos[1], _speed * Time.deltaTime);
+            }
+            else if (_nowpos == 2)
+            {
+                if (Vector2.Distance(this.transform.position, _patrolPos[2]) < 0.01f)
+                {
+                    StartCoroutine(StopDeley());
+                    _nowpos = 0;
+                }
+                else
+                    this.transform.position = Vector3.MoveTowards(transform.position, _patrolPos[2], _speed * Time.deltaTime);
             }
         }
     /*
@@ -83,7 +91,9 @@ public class Boss1Move : MonoBehaviour
         {
             if (_hp > 0)
             {
+                _hpBar.gameObject.SetActive(true);
                 _hp -= collision.gameObject.GetComponent<FireMove>().Damege;
+                _hpBar.value = _hp / _maxHp;
                 Debug.Log(_hp);
                 Destroy(collision.gameObject);
 

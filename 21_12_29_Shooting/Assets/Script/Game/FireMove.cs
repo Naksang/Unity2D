@@ -9,7 +9,7 @@ public class FireMove : MonoBehaviour
 
     Vector3 dir;
 
-    float _damege = 5.0f;
+    float _damege = 1.0f;
     public float Damege { get { return _damege; } }
 
 
