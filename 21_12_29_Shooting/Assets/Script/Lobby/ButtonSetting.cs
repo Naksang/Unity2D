@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class ButtonSetting : MonoBehaviour
 {
@@ -9,8 +11,17 @@ public class ButtonSetting : MonoBehaviour
     public Canvas _characterCanvas;
     public Canvas _OptionCanvas;
 
+    public Image[] _coin;
+    public Image[] _gem;
+
     public GameObject[] _characterPanel;
     int _panelNumber;
+
+    string _noticeName = null;
+    int _noticeCount = 0;
+    int _noticePrice = 0;
+
+
 
     public void OnClick_GameStart()
     {
@@ -94,26 +105,174 @@ public class ButtonSetting : MonoBehaviour
     public void OnClick_U_BuyCoin()
     {
         GameObject.Find("StoreCanvas").transform.Find("CoinStore").gameObject.SetActive(true);
+        Text Coin = GameObject.Find("StoreCanvas").transform.Find("CoinStore").transform.Find("Text").GetChild(0).transform.Find("Text").GetComponent<Text>();
+        Coin.text = SingletonManager.instance.CoinNum + "";
     }
-
     public void OnClick_U_CloseCoin()
     {
         GameObject.Find("StoreCanvas").transform.Find("CoinStore").gameObject.SetActive(false);
     }
 
+    public void Onclick_U_Coin()
+    {
+        for(int i =0; i<_coin.Length; i++)
+        {
+            _gem[i].color = new Color(255, 255, 255, 50);
+        }
+
+        _noticeName = "코인";
+
+        switch (EventSystem.current.currentSelectedGameObject.name)
+        {
+            case "Coin_10":
+                {
+                    _coin[0].color = new Color(255, 255, 255, 180);
+                    _noticeCount = 10;
+                    _noticePrice = 10;
+                }
+                break;
+            case "Coin_50":
+                {
+                    _coin[1].color = new Color(255, 255, 255, 180);
+                    _noticeCount = 50;
+                    _noticePrice = 50;
+                }
+                break;
+            case "Coin_100":
+                {
+                    _coin[2].color = new Color(255, 255, 255, 180);
+                    _noticeCount = 100;
+                    _noticePrice = 100;
+                }
+                break;
+            case "Coin_500":
+                {
+                    _coin[3].color = new Color(255, 255, 255, 180);
+                    _noticeCount = 500;
+                    _noticePrice = 500;
+                }
+                break;
+            case "Coin_1000":
+                {
+                    _coin[4].color = new Color(255, 255, 255, 180);
+                    _noticeCount = 1000;
+                    _noticePrice = 1000;
+                }
+                break;
+            case "Coin_5000":
+                {
+                    _coin[5].color = new Color(255, 255, 255, 180);
+                    _noticeCount = 5000;
+                    _noticePrice = 5000;
+                }
+                break;
+        }
+    }
+
     public void OnClick_U_BuyGem()
     {
         GameObject.Find("StoreCanvas").transform.Find("GemStore").gameObject.SetActive(true);
+        Text Gem = GameObject.Find("StoreCanvas").transform.Find("GemStore").transform.Find("Text").GetChild(0).transform.Find("Text").GetComponent<Text>();
+        Gem.text = SingletonManager.instance.GemNum + "";
     }
-
     public void OnClick_U_CloseGem()
     {
         GameObject.Find("StoreCanvas").transform.Find("GemStore").gameObject.SetActive(false);
     }
 
+    public void Onclick_U_Gem()
+    {
+        for (int i = 0; i < _gem.Length; i++)
+        {
+            _gem[i].color = new Color(255, 255, 255, 50);
+        }
+
+        _noticeName = "수정";
+
+        switch (EventSystem.current.currentSelectedGameObject.name)
+        {
+            case "Gem_10":
+                {
+                    _coin[0].color = new Color(255, 255, 255, 180);
+                    _noticeCount = 10;
+                    _noticePrice = 1000;
+                }
+                break;
+            case "Gem_35":
+                {
+                    _coin[1].color = new Color(255, 255, 255, 180);
+                    _noticeCount = 35;
+                    _noticePrice = 2990;
+                }
+                break;
+            case "Gem_60":
+                {
+                    _coin[2].color = new Color(255, 255, 255, 180);
+                    _noticeCount = 60;
+                    _noticePrice = 4990;
+                }
+                break;
+            case "Gem_130":
+                {
+                    _coin[3].color = new Color(255, 255, 255, 180);
+                    _noticeCount = 130;
+                    _noticePrice = 9990;
+                }
+                break;
+            case "Gem_420":
+                {
+                    _coin[4].color = new Color(255, 255, 255, 180);
+                    _noticeCount = 420;
+                    _noticePrice = 29990;
+                }
+                break;
+            case "Gem_750":
+                {
+                    _coin[5].color = new Color(255, 255, 255, 180);
+                    _noticeCount = 750;
+                    _noticePrice = 49990;
+                }
+                break;
+        }
+    }
+   
     public void OnClick_U_BuyWing()
     {
 
     }
+    public void OnClick_U_Select()
+    {
+        if(_noticeName != null)
+        {
+            GameObject.Find("StoreCanvas").transform.Find("Notice").gameObject.SetActive(true);
+            Text ItemName = GameObject.Find("StoreCanvas").transform.Find("Notice").transform.Find("ItemName").GetComponent<Text>();
+            ItemName.text = _noticeName + " " + _noticeCount + "\n" + _noticePrice;
+        }
+    }
+    public void OnClick_U_NoNotice()
+    {
+        _noticeName = null;
+        _noticeCount = 0;
+        _noticePrice = 0;
+        GameObject.Find("StoreCanvas").transform.Find("Notice").gameObject.SetActive(false);
+    }
+    public void OnClick_U_YesNotice()
+    {
+        if(_noticeName == "코인")
+        {
+            if (_noticePrice > SingletonManager.instance.GemNum) return; //재화가 부족합니다
 
+            GameObject.Find("ItemManager").GetComponent<ItemManager>().Coin += _noticeCount;
+            GameObject.Find("ItemManager").GetComponent<ItemManager>().Gem -= _noticePrice;
+        }
+        else if(_noticeName == "수정")
+        {
+
+        }
+
+        _noticeName = null;
+        _noticeCount = 0;
+        _noticePrice = 0;
+        GameObject.Find("StoreCanvas").transform.Find("Notice").gameObject.SetActive(false);
+    }
 }

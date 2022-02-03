@@ -5,16 +5,23 @@ using UnityEngine.UI;
 
 public class Boss1Move : MonoBehaviour
 {
-    public float _maxHp;
-    public float _hp;
-    bool _die = false;
+    SpriteRenderer _rend;
     public Slider _hpBar;
 
-    SpriteRenderer _rend;
+    public float _maxHp;
+    public float _hp;
+    
+    bool _die = false;
+    bool _delay = false;
 
     public Vector3[] _patrolPos;
     float _speed = 3.0f;
     public int _nowpos = 1;
+
+    public bool Delay
+    {
+        get { return _delay; }
+    }
 
 
     void Start()
@@ -44,14 +51,14 @@ public class Boss1Move : MonoBehaviour
 
             Destroy(this.gameObject);
         }
-        else if (_hp > 0)
+        else if (_hp > 0 && _delay == false)
         {
             if(_nowpos == 0)
             {
                 if (Vector2.Distance(this.transform.position, _patrolPos[0]) < 0.01f)
                 {
+                    _delay = true;
                     StartCoroutine(StopDeley());
-                    _nowpos = 1;
                 }
                 else
                     this.transform.position = Vector3.MoveTowards(transform.position, _patrolPos[0], _speed * Time.deltaTime);
@@ -60,8 +67,8 @@ public class Boss1Move : MonoBehaviour
             {
                 if (Vector2.Distance(this.transform.position, _patrolPos[1]) < 0.01f)
                 {
+                    _delay = true;
                     StartCoroutine(StopDeley());
-                    _nowpos = 2;
                 }
                 else
                     this.transform.position = Vector3.MoveTowards(transform.position, _patrolPos[1], _speed * Time.deltaTime);
@@ -70,8 +77,8 @@ public class Boss1Move : MonoBehaviour
             {
                 if (Vector2.Distance(this.transform.position, _patrolPos[2]) < 0.01f)
                 {
+                    _delay = true;
                     StartCoroutine(StopDeley());
-                    _nowpos = 0;
                 }
                 else
                     this.transform.position = Vector3.MoveTowards(transform.position, _patrolPos[2], _speed * Time.deltaTime);
@@ -113,6 +120,19 @@ public class Boss1Move : MonoBehaviour
 
     IEnumerator StopDeley()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1.5f);
+        switch(_nowpos)
+        {
+            case 0:
+                _nowpos = 1;
+                break;
+            case 1:
+                _nowpos = 2;
+                break;
+            case 2:
+                _nowpos = 0;
+                break;
+        }
+        _delay = false;
     }
 }
