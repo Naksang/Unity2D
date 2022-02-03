@@ -13,20 +13,21 @@ public class GameOverManager : MonoBehaviour
     public Text _coinText;
 
     int _bestTotal; 
-    float _textAni = 0;
+    float _textAni;
     int _textNum = 0;
 
     void Start()
     {
         _bestTotal = PlayerPrefs.GetInt("BestTotal", 0);
         GameObject.Find("Canvas").transform.Find("Character").transform.GetChild(SingletonManager.instance.CharacterNumber).gameObject.SetActive(true);
+        _textAni = 0;
     }
 
     void Update()
     {
-        _textAni += Time.deltaTime * 100000;
+        
 
-        switch(_textNum)
+        switch (_textNum)
         {
             case 0:
                 {
@@ -39,7 +40,10 @@ public class GameOverManager : MonoBehaviour
                         StartCoroutine(DelayTime());
                     }
                     else
+                    {
+                        _textAni += Time.deltaTime * SingletonManager.instance.CurrMeter;
                         _meterText.text = _textAni + "m";
+                    }
                 }
                 break;
             case 1:
@@ -53,7 +57,10 @@ public class GameOverManager : MonoBehaviour
                         StartCoroutine(DelayTime());
                     }
                     else
+                    {
+                        _textAni += Time.deltaTime * SingletonManager.instance.CurrScore;
                         _scoreText.text = _textAni + "";
+                    }
                 }
                 break;
             case 2:
@@ -74,7 +81,10 @@ public class GameOverManager : MonoBehaviour
                         StartCoroutine(DelayTime());
                     }
                     else
+                    {
+                        _textAni += Time.deltaTime * (SingletonManager.instance.CurrMeter + SingletonManager.instance.CurrScore);
                         _totalText.text = _textAni + "";
+                    }
                 }
                 break;
             case 3:

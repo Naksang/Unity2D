@@ -13,6 +13,7 @@ public class ButtonSetting : MonoBehaviour
 
     public Image[] _coin;
     public Image[] _gem;
+    Color _uColor;
 
     public GameObject[] _characterPanel;
     int _panelNumber;
@@ -21,7 +22,10 @@ public class ButtonSetting : MonoBehaviour
     int _noticeCount = 0;
     int _noticePrice = 0;
 
-
+    private void Start()
+    {
+        _uColor = new Color(_coin[0].color.r, _coin[0].color.g, _coin[0].color.b, _coin[0].color.a);
+    }
 
     public void OnClick_GameStart()
     {
@@ -110,14 +114,19 @@ public class ButtonSetting : MonoBehaviour
     }
     public void OnClick_U_CloseCoin()
     {
+        for (int i = 0; i < _coin.Length; i++)
+        {
+            _coin[i].color = _uColor;
+        }
+
         GameObject.Find("StoreCanvas").transform.Find("CoinStore").gameObject.SetActive(false);
     }
 
     public void Onclick_U_Coin()
     {
-        for(int i =0; i<_coin.Length; i++)
+        for (int i = 0; i < _coin.Length; i++)
         {
-            _gem[i].color = new Color(255, 255, 255, 50);
+            _coin[i].color = _uColor;
         }
 
         _noticeName = "코인";
@@ -126,46 +135,46 @@ public class ButtonSetting : MonoBehaviour
         {
             case "Coin_10":
                 {
-                    _coin[0].color = new Color(255, 255, 255, 180);
+                    _coin[0].color = Color.white;
                     _noticeCount = 10;
                     _noticePrice = 10;
+                    break;
                 }
-                break;
             case "Coin_50":
                 {
-                    _coin[1].color = new Color(255, 255, 255, 180);
+                    _coin[1].color = Color.white;
                     _noticeCount = 50;
                     _noticePrice = 50;
+                    break;
                 }
-                break;
             case "Coin_100":
                 {
-                    _coin[2].color = new Color(255, 255, 255, 180);
+                    _coin[2].color = Color.white;
                     _noticeCount = 100;
                     _noticePrice = 100;
+                    break;
                 }
-                break;
             case "Coin_500":
                 {
-                    _coin[3].color = new Color(255, 255, 255, 180);
+                    _coin[3].color = Color.white;
                     _noticeCount = 500;
                     _noticePrice = 500;
+                    break;
                 }
-                break;
             case "Coin_1000":
                 {
-                    _coin[4].color = new Color(255, 255, 255, 180);
+                    _coin[4].color = Color.white;
                     _noticeCount = 1000;
                     _noticePrice = 1000;
+                    break;
                 }
-                break;
             case "Coin_5000":
                 {
-                    _coin[5].color = new Color(255, 255, 255, 180);
+                    _coin[5].color = Color.white;
                     _noticeCount = 5000;
                     _noticePrice = 5000;
+                    break;
                 }
-                break;
         }
     }
 
@@ -177,6 +186,11 @@ public class ButtonSetting : MonoBehaviour
     }
     public void OnClick_U_CloseGem()
     {
+        for (int i = 0; i < _gem.Length; i++)
+        {
+            _gem[i].color = _uColor;
+        }
+
         GameObject.Find("StoreCanvas").transform.Find("GemStore").gameObject.SetActive(false);
     }
 
@@ -184,7 +198,7 @@ public class ButtonSetting : MonoBehaviour
     {
         for (int i = 0; i < _gem.Length; i++)
         {
-            _gem[i].color = new Color(255, 255, 255, 50);
+            _gem[i].color = _uColor;
         }
 
         _noticeName = "수정";
@@ -193,42 +207,42 @@ public class ButtonSetting : MonoBehaviour
         {
             case "Gem_10":
                 {
-                    _coin[0].color = new Color(255, 255, 255, 180);
+                    _gem[0].color = Color.white;
                     _noticeCount = 10;
                     _noticePrice = 1000;
                 }
                 break;
             case "Gem_35":
                 {
-                    _coin[1].color = new Color(255, 255, 255, 180);
+                    _gem[1].color = Color.white;
                     _noticeCount = 35;
                     _noticePrice = 2990;
                 }
                 break;
             case "Gem_60":
                 {
-                    _coin[2].color = new Color(255, 255, 255, 180);
+                    _gem[2].color = Color.white;
                     _noticeCount = 60;
                     _noticePrice = 4990;
                 }
                 break;
             case "Gem_130":
                 {
-                    _coin[3].color = new Color(255, 255, 255, 180);
+                    _gem[3].color = Color.white;
                     _noticeCount = 130;
                     _noticePrice = 9990;
                 }
                 break;
             case "Gem_420":
                 {
-                    _coin[4].color = new Color(255, 255, 255, 180);
+                    _gem[4].color = Color.white;
                     _noticeCount = 420;
                     _noticePrice = 29990;
                 }
                 break;
             case "Gem_750":
                 {
-                    _coin[5].color = new Color(255, 255, 255, 180);
+                    _gem[5].color = Color.white;
                     _noticeCount = 750;
                     _noticePrice = 49990;
                 }
@@ -260,14 +274,25 @@ public class ButtonSetting : MonoBehaviour
     {
         if(_noticeName == "코인")
         {
-            if (_noticePrice > SingletonManager.instance.GemNum) return; //재화가 부족합니다
+            if (_noticePrice > SingletonManager.instance.GemNum) return; //골드가 부족합니다
 
             GameObject.Find("ItemManager").GetComponent<ItemManager>().Coin += _noticeCount;
             GameObject.Find("ItemManager").GetComponent<ItemManager>().Gem -= _noticePrice;
+
+            for (int i = 0; i < _coin.Length; i++)
+            {
+                _coin[i].color = _uColor;
+            }
         }
         else if(_noticeName == "수정")
         {
+            //본인인증이 필요합니다
 
+            /*
+            * 해당 아이템을 더 이상 소지할 수 없습니다.
+            * 무기 업그레이드 레벨 최고치를 달성하였습니다
+            * 더 이상 무기를 강화할 수 없습니다.
+            */
         }
 
         _noticeName = null;
