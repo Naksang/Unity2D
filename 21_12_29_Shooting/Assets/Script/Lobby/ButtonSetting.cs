@@ -56,7 +56,7 @@ public class ButtonSetting : MonoBehaviour
 
     public void OnClick_Store()
     {
-
+        GameObject.Find("StoreCanvas").transform.Find("ItemStore").gameObject.SetActive(true);
     }
 
     public void OnClick_Option()
