@@ -41,9 +41,9 @@ public class ItemManager : MonoBehaviour
 
     void Start()
     {
-        _wing = 5;
-        _gem = 10000;
-        _coin = 1000;
+        _wing = PlayerPrefs.GetInt("Wing", 5);
+        _gem = PlayerPrefs.GetInt("Gem", 10000);
+        _coin = PlayerPrefs.GetInt("Coin", 1000);
 
         SingletonManager.instance.GemNum = _gem;
         SingletonManager.instance.CoinNum = _coin;

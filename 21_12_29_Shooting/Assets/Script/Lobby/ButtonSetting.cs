@@ -306,7 +306,6 @@ public class ButtonSetting : MonoBehaviour
     //스토어
     public void Onclick_Store()
     {
-
         switch (EventSystem.current.currentSelectedGameObject.name)
         {
             case "0":
